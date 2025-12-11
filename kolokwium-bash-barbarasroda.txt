@@ -1,0 +1,50 @@
+#!/usr/bin/bash
+
+#zadanie 3
+
+for ((i=10;i<1001;i++)); do
+	if ((i%20==0 && i%40!=0 && i%30!=0)); then
+		echo $i
+	fi
+done
+
+#zadanie 6
+
+i=16
+while ((i>=2)); do
+	if ((i%2==0)); then
+		echo $i
+		((i--))
+	else
+		((i--))
+	fi
+done
+
+#zadanie 7
+#suma wartoci minimalnej i maksymalnej tablicy
+
+read -p "podaj elementy tablicy=" tab
+tab=($tab)
+len=${#tab[@]}
+echo $len
+for ((i=0;i>=$len-1;i++)); do
+	if (($tab[i]>$tab[i+1])); then
+		max=${tab[i]}
+	else
+		min=${tab[i]}
+	fi
+done
+suma=$min+$max
+echo $suma
+
+#zadanie 8
+tab=()
+len=${#tablica[@]}
+for ((i=0;i>=$len-1;i++)); do
+	if ((${tab[i]} gt ${tab[i+1]})); then
+		max=${tab[i]}
+	else
+		min=${tab[i]}
+	fi
+done
+for ((
