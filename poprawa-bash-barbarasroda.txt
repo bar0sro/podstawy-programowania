@@ -1,0 +1,71 @@
+#!/usr/bin/bash
+
+#zadanie 1
+for ((i=75; i<1513; i++)); do
+	if ((i%100==0 && i%200!=0)); then
+		echo $i
+	else
+		continue
+	fi
+done
+
+#zadanie 2
+read -p "Podaj poczatek przedzialu: " p
+read -p "Podaj koniec przedzialu: " k
+if ((p>=k)); then
+	echo "Wpisz poprawny przedzial taki, ze poczatek<koniec"
+else
+	while ((p<k)); do
+		if ((p%3==0 && p%2==0)); then
+			echo $p
+			((p=p+6))
+		elif ((p%3==0 && p%2!=0)); then
+			echo $p
+			((p=p+7))
+		else
+			((p++))
+		fi
+	done
+	
+fi
+
+#zadanie 3
+#sortowanie pierwszej rosnco
+declare -a t1=(7 6 2 9 3 1 10 18 4)
+len1=${#t1[@]}
+echo ${t1[*]}
+for ((i=0; i<len1; i++)); do
+	for ((j=0; j<len1-i-1; j++)); do
+		if ((t1[j]>t1[j+1])); then
+			temp=${t1[j]}
+			t1[j]=${t1[j+1]}
+			t1[j+1]=$temp
+		fi
+	done
+	echo ${t1[*]}
+done
+echo ${t1[*]}
+
+#sortowanie drugiej malejco
+declare -a t2=(1 10 12 5 8 14 21 0 5)
+len2=${#t2[@]}
+echo ${t2[*]}
+for ((i=0; i<len2; i++)); do
+	for ((j=0; j<len2-i-1; j++)); do
+		if ((t2[j]<t2[j+1])); then
+			temp=${t2[j]}
+			t2[j]=${t2[j+1]}
+			t2[j+1]=$temp
+		fi
+	done
+	echo ${t2[*]}
+done
+echo ${t2[*]}
+# teraz jak patrze to nie trzeba bylo obliczac len1 i len2 bo sa tej samej dlugosci obie tablice ale gdyby nie byly to moznaby to tak rozwiazac
+
+#zadanie 4
+#dodajemy najmniejszy z jednej + najwiekszy z drugiej
+for ((i=0; i<len1; i++)); do
+	((suma=${t1[i]}+${t2[i]}))
+	echo "Suma $i: $suma"
+done
